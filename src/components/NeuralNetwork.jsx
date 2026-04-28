@@ -60,35 +60,6 @@ const NODES = [
   },
 ]
 
-/* SVG connector lines between all node pairs */
-function Connectors({ hovered }) {
-  return (
-    <svg
-      style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none' }}
-      viewBox={`0 0 400 520`}
-    >
-      {NODES.map((a, i) =>
-        NODES.slice(i + 1).map(b => {
-          const isActive = hovered === a.id || hovered === b.id
-          const aCx = a.left + HALF
-          const aCy = a.top  + HALF
-          const bCx = b.left + HALF
-          const bCy = b.top  + HALF
-          return (
-            <line
-              key={`${a.id}-${b.id}`}
-              x1={aCx} y1={aCy} x2={bCx} y2={bCy}
-              stroke={isActive ? (hovered === a.id ? a.color : b.color) : 'rgba(99,102,241,0.10)'}
-              strokeWidth={isActive ? 1.5 : 0.8}
-              strokeDasharray={isActive ? 'none' : '4 4'}
-              style={{ transition: 'stroke 0.3s, stroke-width 0.3s' }}
-            />
-          )
-        })
-      )}
-    </svg>
-  )
-}
 
 export default function NeuralNetwork() {
   const [hovered, setHovered] = useState(null)
@@ -126,9 +97,6 @@ export default function NeuralNetwork() {
           pointerEvents: 'none',
         }}
       />
-
-      {/* SVG connector lines */}
-      <Connectors hovered={hovered} />
 
       {/* Center info card (shown in empty ring area on hover) */}
       {activeNode ? (
