@@ -8,9 +8,9 @@ export default {
     extend: {
       colors: {
         bg: {
-          primary:   '#0a101e',
-          secondary: '#121a2a',
-          card:      '#162136',
+          primary:   '#0f172a',
+          secondary: '#1e293b',
+          card:      '#27354d',
         },
         accent: {
           primary:   '#6366f1',
