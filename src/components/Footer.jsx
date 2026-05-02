@@ -32,17 +32,16 @@ export default function Footer() {
           <div className="col-span-2 md:col-span-3 lg:col-span-1">
             <a href="#home" className="flex items-center gap-2.5 mb-4">
               <div className="w-8 h-8">
-                <svg viewBox="0 0 32 32" fill="none">
-                  <polygon points="16,2 30,26 2,26" fill="url(#flg1)" opacity="0.9"/>
-                  <polygon points="16,8 24,26 8,26" fill="url(#flg2)" opacity="0.6"/>
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <defs>
-                    <linearGradient id="flg1" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#6366f1"/><stop offset="100%" stopColor="#06b6d4"/>
-                    </linearGradient>
-                    <linearGradient id="flg2" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#8b5cf6"/><stop offset="100%" stopColor="#6366f1"/>
+                    <linearGradient id="f_bg_footer" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
+                      <stop offset="0%" stopColor="#3b82f6"/>
+                      <stop offset="100%" stopColor="#1d4ed8"/>
                     </linearGradient>
                   </defs>
+                  <rect width="100" height="100" rx="22" fill="url(#f_bg_footer)" />
+                  <path d="M 24 24 H 76 V 42 H 24 Z" fill="white" />
+                  <path d="M 24 48 H 60 A 9 9 0 0 1 60 66 H 44 V 76 H 24 Z" fill="white" />
                 </svg>
               </div>
               <span className="font-display text-xl font-bold tracking-tight gradient-text">Futentia</span>
