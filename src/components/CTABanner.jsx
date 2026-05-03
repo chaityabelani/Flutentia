@@ -4,9 +4,9 @@ export default function CTABanner() {
   const ref = useReveal()
 
   return (
-    <section className="py-20 bg-bg-primary" ref={ref}>
+    <section className="py-12 lg:py-20 bg-bg-primary" ref={ref}>
       <div className="max-w-[1200px] mx-auto px-6">
-        <div className="relative rounded-xl3 p-16 md:p-[72px_64px] overflow-hidden text-center flex flex-col items-center
+        <div className="relative rounded-xl3 p-8 sm:p-12 md:p-[72px_64px] overflow-hidden text-center flex flex-col items-center
                         border border-accent-primary/25 reveal"
              style={{ background: 'linear-gradient(145deg,rgba(99,102,241,.12),rgba(139,92,246,.06),rgba(6,182,212,.08))' }}>
 

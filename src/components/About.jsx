@@ -11,11 +11,11 @@ export default function About() {
   const sectionRef = useReveal()
 
   return (
-    <section id="about" className="relative py-24 overflow-hidden" ref={sectionRef}>
+    <section id="about" className="relative py-16 lg:py-24 overflow-hidden" ref={sectionRef}>
 
 
       <div className="relative z-10 max-w-[1200px] mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-start">
 
           {/* Left */}
           <div className="reveal">
@@ -47,7 +47,7 @@ export default function About() {
           </div>
 
           {/* Right: values grid */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {values.map((v, i) => (
               <div key={v.title}
                    className="glass-card p-6 reveal"

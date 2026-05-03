@@ -18,7 +18,7 @@ export default function Testimonials() {
   const t = testimonials[active]
 
   return (
-    <section id="testimonials" className="relative py-24 bg-bg-secondary overflow-hidden" ref={sectionRef}>
+    <section id="testimonials" className="relative py-16 lg:py-24 bg-bg-secondary overflow-hidden" ref={sectionRef}>
       {/* Soft radial glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] pointer-events-none"
            style={{ background: 'radial-gradient(circle,rgba(99,102,241,.06),transparent 70%)' }}/>
@@ -35,7 +35,7 @@ export default function Testimonials() {
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-12 items-start reveal">
 
           {/* Main quote */}
-          <div className="relative bg-gradient-card border border-accent-primary/20 rounded-xl3 p-12 flex flex-col justify-between min-h-[300px]">
+          <div className="relative bg-gradient-card border border-accent-primary/20 rounded-xl3 p-6 sm:p-12 flex flex-col justify-between min-h-[300px]">
             {/* Quote mark */}
             <span className="absolute top-6 left-9 text-[5rem] leading-none font-serif gradient-text opacity-30 select-none">"</span>
 

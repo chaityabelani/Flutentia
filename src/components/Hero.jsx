@@ -39,8 +39,8 @@ export default function Hero() {
            style={{ background: 'radial-gradient(circle,rgba(6,182,212,.15),transparent 70%)' }}/>
 
       {/* ── Content wrapper ── */}
-      <div className="relative z-10 w-full max-w-[1200px] mx-auto px-6 py-20">
-        <div className="flex items-center justify-between gap-16">
+      <div className="relative z-10 w-full max-w-[1200px] mx-auto px-6 py-10 lg:py-20">
+        <div className="flex items-center justify-between gap-10 lg:gap-16">
 
           {/* ── Left: text ── */}
           <div className="flex flex-col items-start flex-1 min-w-0">
@@ -84,7 +84,7 @@ export default function Hero() {
             </div>
 
             {/* Stats */}
-            <div className="animate-fade-up-d5 flex items-start gap-10 pt-10
+            <div className="animate-fade-up-d5 flex items-start flex-wrap gap-6 sm:gap-10 pt-10
                             border-t border-accent-primary/15 w-full max-w-[520px]">
               {stats.map((s) => (
                 <div key={s.label} className="flex flex-col gap-1 flex-shrink-0">
