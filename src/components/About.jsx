@@ -50,7 +50,7 @@ export default function About() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {values.map((v, i) => (
               <div key={v.title}
-                   className={`glass-card p-6 reveal-scale reveal-d${i + 1}`}
+                   className={`glass-card p-6 reveal-scale reveal-d${i + 1}`}>
                 <div className="text-[1.6rem] mb-3 leading-none">{v.icon}</div>
                 <h3 className="font-display font-bold text-base text-slate-100 mb-2 tracking-tight">{v.title}</h3>
                 <p className="text-[0.83rem] text-slate-600 leading-[1.65]">{v.desc}</p>
