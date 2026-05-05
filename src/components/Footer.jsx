@@ -25,8 +25,8 @@ export default function Footer() {
     <footer className="bg-bg-secondary border-t border-accent-primary/15">
 
       {/* Top */}
-      <div className="max-w-[1200px] mx-auto px-6 py-12 lg:py-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-[1.6fr_1fr_1fr_1fr_1fr] gap-10 lg:gap-12">
+      <div className="max-w-[1200px] mx-auto px-6 py-16">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-[1.6fr_1fr_1fr_1fr_1fr] gap-10 lg:gap-12">
 
           {/* Brand */}
           <div className="col-span-2 md:col-span-3 lg:col-span-1">

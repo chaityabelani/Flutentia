@@ -15,7 +15,7 @@ export default function Industries() {
   const sectionRef = useReveal()
 
   return (
-    <section id="industries" className="py-16 lg:py-24 bg-bg-secondary" ref={sectionRef}>
+    <section id="industries" className="py-24 bg-bg-secondary" ref={sectionRef}>
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="flex flex-col items-center text-center mb-14 reveal">
           <span className="section-label">Industries</span>

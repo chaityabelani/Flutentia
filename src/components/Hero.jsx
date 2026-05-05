@@ -39,8 +39,8 @@ export default function Hero() {
            style={{ background: 'radial-gradient(circle,rgba(6,182,212,.15),transparent 70%)' }}/>
 
       {/* ── Content wrapper ── */}
-      <div className="relative z-10 w-full max-w-[1200px] mx-auto px-6 py-10 lg:py-20">
-        <div className="flex items-center justify-between gap-10 lg:gap-16">
+      <div className="relative z-10 w-full max-w-[1200px] mx-auto px-4 sm:px-6 py-12 sm:py-20">
+        <div className="flex items-center justify-between gap-16">
 
           {/* ── Left: text ── */}
           <div className="flex flex-col items-start flex-1 min-w-0">
@@ -48,33 +48,33 @@ export default function Hero() {
             {/* Badge */}
             <div className="animate-fade-up-d1 inline-flex items-center gap-2 text-2xs font-semibold
                             tracking-[0.04em] text-accent-primary bg-accent-primary/10
-                            border border-accent-primary/30 px-4 py-1.5 rounded-full mb-8">
+                            border border-accent-primary/30 px-4 py-1.5 rounded-full mb-6 sm:mb-8">
               <span className="w-[7px] h-[7px] rounded-full bg-accent-primary animate-pulse-glow flex-shrink-0"/>
               AI-Powered Enterprise Solutions
             </div>
 
             {/* Headline */}
             <h1 className="animate-fade-up-d2 font-display font-extrabold leading-[1.05]
-                           tracking-[-0.03em] text-[clamp(2.8rem,5vw,5rem)] text-slate-100 mb-6">
+                           tracking-[-0.03em] text-[clamp(2.2rem,7vw,5rem)] text-slate-100 mb-5 sm:mb-6">
               Driven By<br/>
               <span className="gradient-text">Intelligence</span>
             </h1>
 
             {/* Subtext */}
-            <p className="animate-fade-up-d3 text-base lg:text-lg text-slate-400 leading-[1.8] mb-10 max-w-[520px]">
+            <p className="animate-fade-up-d3 text-sm sm:text-base lg:text-lg text-slate-400 leading-[1.8] mb-8 sm:mb-10 max-w-[520px]">
               We transform businesses through cutting-edge AI, cloud architecture, and intelligent
               automation — building systems that scale and solutions that last.
             </p>
 
             {/* CTA Buttons */}
-            <div className="animate-fade-up-d4 flex flex-wrap items-center gap-4 mb-12">
-              <a href="#services" className="btn-primary text-[0.95rem] px-8 py-3.5">
+            <div className="animate-fade-up-d4 flex flex-col xs:flex-row flex-wrap items-stretch xs:items-center gap-3 sm:gap-4 mb-10 sm:mb-12 w-full xs:w-auto">
+              <a href="#services" className="btn-primary text-[0.9rem] sm:text-[0.95rem] px-6 sm:px-8 py-3 sm:py-3.5 justify-center">
                 <span>Explore Services</span>
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                   <path d="M3 8h10M8.5 3.5L13 8l-4.5 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </a>
-              <a href="#contact" className="btn-outline text-[0.95rem] px-8 py-3.5">
+              <a href="#contact" className="btn-outline text-[0.9rem] sm:text-[0.95rem] px-6 sm:px-8 py-3 sm:py-3.5 justify-center">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                   <rect x="2" y="3" width="12" height="10" rx="1.5" stroke="currentColor" strokeWidth="1.5"/>
                   <path d="M2 5l6 5 6-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
@@ -84,11 +84,11 @@ export default function Hero() {
             </div>
 
             {/* Stats */}
-            <div className="animate-fade-up-d5 flex items-start flex-wrap gap-6 sm:gap-10 pt-10
+            <div className="animate-fade-up-d5 grid grid-cols-2 sm:grid-cols-4 items-start gap-6 sm:gap-10 pt-8 sm:pt-10
                             border-t border-accent-primary/15 w-full max-w-[520px]">
               {stats.map((s) => (
-                <div key={s.label} className="flex flex-col gap-1 flex-shrink-0">
-                  <span className="gradient-text font-display text-3xl font-extrabold tracking-tight leading-none">
+                <div key={s.label} className="flex flex-col gap-1">
+                  <span className="gradient-text font-display text-2xl sm:text-3xl font-extrabold tracking-tight leading-none">
                     {s.value}
                   </span>
                   <span className="text-2xs text-slate-600 font-medium uppercase tracking-[0.05em] mt-1 whitespace-nowrap">

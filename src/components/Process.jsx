@@ -19,7 +19,7 @@ export default function Process() {
   const sectionRef = useReveal()
 
   return (
-    <section id="process" className="relative py-16 lg:py-24 overflow-hidden" ref={sectionRef}>
+    <section id="process" className="relative py-24 overflow-hidden" ref={sectionRef}>
 
 
       <div className="relative z-10 max-w-[1200px] mx-auto px-6">
