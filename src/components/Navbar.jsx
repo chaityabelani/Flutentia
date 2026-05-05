@@ -120,7 +120,7 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="lg:hidden fixed top-[72px] inset-x-0 bg-bg-primary/97 backdrop-blur-xl
+        <div className="lg:hidden fixed top-[72px] inset-x-0 bg-bg-primary
                         border-b border-accent-primary/15 px-6 py-5 flex flex-col gap-1 animate-fade-in">
           {navLinks.map((link) => (
             <a key={link.label} href={link.href}
