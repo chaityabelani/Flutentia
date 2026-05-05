@@ -18,7 +18,7 @@ export default function About() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-start">
 
           {/* Left */}
-          <div className="reveal">
+          <div className="reveal-left">
             <span className="section-label">
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                 <circle cx="6" cy="6" r="5" stroke="currentColor" strokeWidth="1.5"/>
@@ -50,8 +50,7 @@ export default function About() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {values.map((v, i) => (
               <div key={v.title}
-                   className="glass-card p-6 reveal"
-                   style={{ transitionDelay: `${i * 0.08}s` }}>
+                   className={`glass-card p-6 reveal-scale reveal-d${i + 1}`}
                 <div className="text-[1.6rem] mb-3 leading-none">{v.icon}</div>
                 <h3 className="font-display font-bold text-base text-slate-100 mb-2 tracking-tight">{v.title}</h3>
                 <p className="text-[0.83rem] text-slate-600 leading-[1.65]">{v.desc}</p>

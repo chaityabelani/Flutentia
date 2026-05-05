@@ -4,51 +4,162 @@
 
 /* ── Google Fonts are loaded in index.html ── */
 
-/* ── Theme Variables ── */
+/* ────────────────────────────────────────────
+   THEME VARIABLES
+   ──────────────────────────────────────────── */
 :root {
+  /* Dark (default) */
   --bg-primary:   #0f172a;
   --bg-secondary: #1e293b;
   --bg-card:      #27354d;
+
+  --text-primary:   #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted:     #475569;
+
+  --border-card:    rgba(99,102,241,0.20);
+  --border-subtle:  rgba(99,102,241,0.12);
+
+  --card-bg:        linear-gradient(145deg,rgba(99,102,241,0.08),rgba(139,92,246,0.04));
+  --card-shadow:    0 4px 24px rgba(0,0,0,0.40);
+  --card-shadow-h:  0 20px 40px rgba(99,102,241,0.15);
+
+  --orb-opacity: 1;
+  --spotlight-color: rgba(99,102,241,0.08);
 }
 
 html.light {
   --bg-primary:   #f5f4f0;
   --bg-secondary: #eceae5;
   --bg-card:      #ffffff;
+
+  --text-primary:   #0f172a;
+  --text-secondary: #475569;
+  --text-muted:     #94a3b8;
+
+  --border-card:    rgba(99,102,241,0.18);
+  --border-subtle:  rgba(99,102,241,0.10);
+
+  --card-bg:        linear-gradient(145deg,rgba(255,255,255,0.95),rgba(236,234,229,0.60));
+  --card-shadow:    0 4px 20px rgba(0,0,0,0.07), 0 1px 3px rgba(0,0,0,0.05);
+  --card-shadow-h:  0 20px 48px rgba(99,102,241,0.14), 0 4px 12px rgba(0,0,0,0.06);
+
+  --orb-opacity: 0.35;
+  --spotlight-color: rgba(99,102,241,0.06);
 }
 
-/* Light mode: text overrides */
-html.light .text-slate-100 { color: #0f172a !important; }
-html.light .text-slate-400 { color: #475569 !important; }
-html.light .text-slate-600 { color: #64748b !important; }
-html.light .text-slate-700 { color: #334155 !important; }
+/* ── Light mode: text ── */
+html.light .text-slate-100 { color: var(--text-primary)   !important; }
+html.light .text-slate-400 { color: var(--text-secondary) !important; }
+html.light .text-slate-600 { color: var(--text-muted)     !important; }
+html.light .text-slate-700 { color: #334155               !important; }
 
-/* Light mode: card / gradient-card backgrounds */
+/* ── Light mode: cards ── */
 html.light .bg-gradient-card {
-  background-image: linear-gradient(145deg, rgba(255,255,255,0.9), rgba(236,234,229,0.5)) !important;
+  background-image: var(--card-bg) !important;
 }
 html.light .glass-card {
-  background-image: linear-gradient(145deg, rgba(255,255,255,0.95), rgba(240,239,235,0.6)) !important;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  background-image: var(--card-bg) !important;
+  box-shadow: var(--card-shadow);
+  border-color: var(--border-card);
 }
 html.light .glass-card:hover {
-  box-shadow: 0 20px 40px rgba(99,102,241,0.10);
+  box-shadow: var(--card-shadow-h);
+}
+html.light .glass-card::before {
+  background: linear-gradient(135deg, rgba(99,102,241,0.04), transparent) !important;
 }
 
-/* Light mode: white-opacity borders/backgrounds */
-html.light .border-white\/15 { border-color: rgba(0,0,0,0.12) !important; }
-html.light .border-white\/8  { border-color: rgba(0,0,0,0.08) !important; }
+/* ── Light mode: borders & bg opacity utils ── */
+html.light .border-white\/15 { border-color: rgba(0,0,0,0.10) !important; }
+html.light .border-white\/8  { border-color: rgba(0,0,0,0.07) !important; }
 html.light .bg-white\/5      { background-color: rgba(0,0,0,0.03) !important; }
+html.light .border-accent-primary\/15 { border-color: rgba(99,102,241,0.14) !important; }
+html.light .border-accent-primary\/20 { border-color: rgba(99,102,241,0.18) !important; }
 
-/* Light mode: form inputs */
+/* ── Light mode: orbs (reduce intensity) ── */
+html.light .orb { opacity: var(--orb-opacity); }
+
+/* ── Light mode: spotlight ── */
+html.light .spotlight::after {
+  background: radial-gradient(600px circle at var(--mouse-x,50%) var(--mouse-y,50%), var(--spotlight-color), transparent 60%) !important;
+}
+
+/* ── Light mode: navbar ── */
+html.light nav .text-slate-400 { color: #475569 !important; }
+html.light nav .text-slate-100 { color: #0f172a !important; }
+html.light nav .hover\:text-slate-100:hover { color: #0f172a !important; }
+html.light nav[class*="bg-bg-primary"] { background-color: rgba(245,244,240,0.90) !important; }
+
+/* ── Light mode: btn-outline ── */
+html.light .btn-outline {
+  color: #0f172a !important;
+  border-color: rgba(0,0,0,0.15) !important;
+  background: rgba(0,0,0,0.02) !important;
+}
+html.light .btn-outline:hover {
+  background: rgba(99,102,241,0.08) !important;
+  border-color: rgba(99,102,241,0.40) !important;
+  color: #6366f1 !important;
+}
+
+/* ── Light mode: section-label ── */
+html.light .section-label {
+  background: rgba(99,102,241,0.09);
+  border-color: rgba(99,102,241,0.22);
+}
+
+/* ── Light mode: tags ── */
+html.light .tag {
+  background: rgba(99,102,241,0.09);
+  border-color: rgba(99,102,241,0.22);
+  color: #4f46e5;
+}
+
+/* ── Light mode: form inputs ── */
 html.light .form-input {
-  background-color: rgba(0,0,0,0.03);
-  border-color: rgba(0,0,0,0.12);
+  background-color: rgba(0,0,0,0.03) !important;
+  border-color: rgba(0,0,0,0.12) !important;
   color: #0f172a;
 }
+html.light .form-input:focus {
+  border-color: #6366f1 !important;
+  background-color: rgba(99,102,241,0.04) !important;
+  ring-color: rgba(99,102,241,0.12) !important;
+}
 html.light .form-input::placeholder { color: #94a3b8; }
+html.light select.form-input option { background: #f5f4f0; color: #0f172a; }
 
-/* ── Base resets ── */
+/* ── Light mode: scrollbar ── */
+html.light ::-webkit-scrollbar-track { background: var(--bg-secondary); }
+html.light ::-webkit-scrollbar-thumb { background: rgba(99,102,241,0.40); }
+
+/* ── Light mode: industry/process cards hover ── */
+html.light .hover\:shadow-\[0_12px_32px_rgba\(99\,102\,241\,0\.12\)\]:hover {
+  box-shadow: 0 12px 32px rgba(99,102,241,0.12), 0 4px 8px rgba(0,0,0,0.06) !important;
+}
+html.light .hover\:shadow-\[0_16px_40px_rgba\(99\,102\,241\,0\.12\)\]:hover {
+  box-shadow: 0 16px 40px rgba(99,102,241,0.12), 0 4px 8px rgba(0,0,0,0.06) !important;
+}
+
+/* ── Light mode: testimonial quote bg ── */
+html.light .rounded-xl3.bg-gradient-card,
+html.light [class*="rounded-xl3"] {
+  background-image: var(--card-bg) !important;
+  box-shadow: var(--card-shadow);
+}
+
+/* ── Light mode: footer brand text ── */
+html.light footer .text-slate-600 { color: #64748b !important; }
+
+/* ── Light mode: CTA banner ── */
+html.light [style*="linear-gradient(145deg,rgba(99,102,241,.12)"] {
+  background: linear-gradient(145deg,rgba(99,102,241,.08),rgba(139,92,246,.04),rgba(6,182,212,.06)) !important;
+}
+
+/* ────────────────────────────────────────────
+   BASE RESETS
+   ──────────────────────────────────────────── */
 @layer base {
   *, *::before, *::after { box-sizing: border-box; }
 
@@ -56,6 +167,7 @@ html.light .form-input::placeholder { color: #94a3b8; }
 
   body {
     @apply bg-bg-primary text-slate-100 font-sans leading-relaxed antialiased overflow-x-hidden;
+    transition: background-color 0.35s ease, color 0.35s ease;
   }
 
   ::-webkit-scrollbar { width: 6px; }
@@ -68,7 +180,9 @@ html.light .form-input::placeholder { color: #94a3b8; }
   ul, ol { list-style: none; }
 }
 
-/* ── Reusable component layer ── */
+/* ────────────────────────────────────────────
+   COMPONENTS
+   ──────────────────────────────────────────── */
 @layer components {
 
   /* Gradient text */
@@ -84,17 +198,20 @@ html.light .form-input::placeholder { color: #94a3b8; }
     @apply inline-flex items-center gap-2 text-2xs font-semibold tracking-widest uppercase
            text-accent-primary bg-accent-primary/10 border border-accent-primary/25
            px-3.5 py-1.5 rounded-full mb-5;
+    transition: background 0.3s ease, border-color 0.3s ease;
   }
 
   /* Section heading */
   .section-title {
     @apply font-display text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight tracking-tight
            text-slate-100 mb-4;
+    transition: color 0.3s ease;
   }
 
   /* Section subtitle */
   .section-subtitle {
     @apply text-sm sm:text-base lg:text-lg text-slate-400 max-w-xl leading-relaxed;
+    transition: color 0.3s ease;
   }
 
   /* Glass card */
@@ -102,6 +219,7 @@ html.light .form-input::placeholder { color: #94a3b8; }
     @apply relative overflow-hidden rounded-xl2
            bg-gradient-card border border-accent-primary/20
            backdrop-blur-md transition-all duration-250;
+    box-shadow: var(--card-shadow);
   }
   .glass-card::before {
     content: '';
@@ -109,21 +227,21 @@ html.light .form-input::placeholder { color: #94a3b8; }
   }
   .glass-card:hover {
     @apply -translate-y-1 border-accent-primary/40;
-    box-shadow: 0 20px 40px rgba(99,102,241,0.15);
+    box-shadow: var(--card-shadow-h);
   }
-
-
 
   /* Animated orbs */
   .orb {
     @apply absolute rounded-full pointer-events-none;
     filter: blur(80px);
+    transition: opacity 0.5s ease;
   }
 
   /* Tag chip */
   .tag {
     @apply inline-flex items-center text-2xs font-medium px-2.5 py-1 rounded-lg
            bg-accent-primary/12 text-accent-primary border border-accent-primary/20;
+    transition: background 0.3s ease, border-color 0.3s ease;
   }
 
   /* Primary button */
@@ -161,25 +279,81 @@ html.light .form-input::placeholder { color: #94a3b8; }
   }
 }
 
-/* ── Utilities ── */
+/* ────────────────────────────────────────────
+   UTILITIES & ANIMATIONS
+   ──────────────────────────────────────────── */
 @layer utilities {
   .bg-accent-primary\/12 { background-color: rgba(99,102,241,0.12); }
-  .animate-fade-up-d1 { animation: fade-up 0.6s ease 0.1s both; }
-  .animate-fade-up-d2 { animation: fade-up 0.6s ease 0.2s both; }
+
+  /* Hero entrance animations */
+  .animate-fade-up-d1 { animation: fade-up 0.6s ease 0.1s  both; }
+  .animate-fade-up-d2 { animation: fade-up 0.6s ease 0.2s  both; }
   .animate-fade-up-d3 { animation: fade-up 0.6s ease 0.35s both; }
-  .animate-fade-up-d4 { animation: fade-up 0.6s ease 0.5s both; }
+  .animate-fade-up-d4 { animation: fade-up 0.6s ease 0.5s  both; }
   .animate-fade-up-d5 { animation: fade-up 0.6s ease 0.65s both; }
 
-  /* Scroll-triggered reveal */
+  /* ── Scroll-triggered reveal variants ── */
+
+  /* Default: fade up */
   .reveal {
     opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+    transform: translateY(36px);
+    transition: opacity 0.65s cubic-bezier(0.22,1,0.36,1),
+                transform 0.65s cubic-bezier(0.22,1,0.36,1);
+    will-change: opacity, transform;
   }
-  .reveal.visible {
+
+  /* Fade from left */
+  .reveal-left {
+    opacity: 0;
+    transform: translateX(-40px);
+    transition: opacity 0.65s cubic-bezier(0.22,1,0.36,1),
+                transform 0.65s cubic-bezier(0.22,1,0.36,1);
+    will-change: opacity, transform;
+  }
+
+  /* Fade from right */
+  .reveal-right {
+    opacity: 0;
+    transform: translateX(40px);
+    transition: opacity 0.65s cubic-bezier(0.22,1,0.36,1),
+                transform 0.65s cubic-bezier(0.22,1,0.36,1);
+    will-change: opacity, transform;
+  }
+
+  /* Scale in */
+  .reveal-scale {
+    opacity: 0;
+    transform: scale(0.92);
+    transition: opacity 0.55s cubic-bezier(0.22,1,0.36,1),
+                transform 0.55s cubic-bezier(0.22,1,0.36,1);
+    will-change: opacity, transform;
+  }
+
+  /* Fade only */
+  .reveal-fade {
+    opacity: 0;
+    transition: opacity 0.7s ease;
+    will-change: opacity;
+  }
+
+  /* Visible state (all variants) */
+  .reveal.visible,
+  .reveal-left.visible,
+  .reveal-right.visible,
+  .reveal-scale.visible,
+  .reveal-fade.visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
   }
+
+  /* Stagger helpers */
+  .reveal-d1 { transition-delay: 0.05s !important; }
+  .reveal-d2 { transition-delay: 0.12s !important; }
+  .reveal-d3 { transition-delay: 0.19s !important; }
+  .reveal-d4 { transition-delay: 0.26s !important; }
+  .reveal-d5 { transition-delay: 0.33s !important; }
+  .reveal-d6 { transition-delay: 0.40s !important; }
 
   /* Mask fade for marquee */
   .marquee-mask {
@@ -187,13 +361,20 @@ html.light .form-input::placeholder { color: #94a3b8; }
     mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
   }
 
-  /* Mouse spotlight (CSS-variable driven) */
+  /* Mouse spotlight */
   .spotlight::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(600px circle at var(--mouse-x,50%) var(--mouse-y,50%), rgba(99,102,241,0.08), transparent 60%);
+    background: radial-gradient(600px circle at var(--mouse-x,50%) var(--mouse-y,50%), var(--spotlight-color, rgba(99,102,241,0.08)), transparent 60%);
     pointer-events: none;
     transition: background 0.1s ease;
   }
+
+  /* Hide scrollbar */
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-none::-webkit-scrollbar { display: none; }
 }

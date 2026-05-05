@@ -38,12 +38,11 @@ export default function Process() {
           {steps.map((step, i) => (
             <div
               key={step.num}
-              className="relative p-8 bg-gradient-card border border-accent-primary/20 rounded-xl2
+              className={`relative p-8 bg-gradient-card border border-accent-primary/20 rounded-xl2
                          overflow-hidden group transition-all duration-250
                          hover:-translate-y-1 hover:border-accent-primary/35
                          hover:shadow-[0_16px_40px_rgba(99,102,241,0.12)]
-                         reveal"
-              style={{ transitionDelay: `${i * 0.08}s` }}
+                         ${i % 2 === 0 ? 'reveal-left' : 'reveal-right'} reveal-d${(i % 3) + 1}`}
             >
               {/* Top gradient bar on hover */}
               <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-hero

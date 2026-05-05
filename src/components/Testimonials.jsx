@@ -32,7 +32,7 @@ export default function Testimonials() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-8 lg:gap-12 items-start reveal">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-8 lg:gap-12 items-start reveal-fade">
 
           {/* Main quote */}
           <div className="relative bg-gradient-card border border-accent-primary/20 rounded-xl3 p-6 sm:p-10 lg:p-12 flex flex-col justify-between min-h-[260px] sm:min-h-[300px]">

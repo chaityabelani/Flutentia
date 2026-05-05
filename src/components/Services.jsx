@@ -116,8 +116,7 @@ export default function Services() {
           {services.map((svc, i) => (
             <div
               key={svc.title}
-              className="glass-card p-8 flex flex-col cursor-pointer reveal group"
-              style={{ '--accent-color': svc.color, transitionDelay: `${i * 0.07}s` }}
+              className={`glass-card p-8 flex flex-col cursor-pointer reveal-scale group reveal-d${(i % 3) + 1}`}
             >
               {/* Bottom accent line on hover */}
               <div className="absolute bottom-0 left-0 right-0 h-[3px] rounded-b-xl2 opacity-0
