@@ -4,6 +4,50 @@
 
 /* ── Google Fonts are loaded in index.html ── */
 
+/* ── Theme Variables ── */
+:root {
+  --bg-primary:   #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-card:      #27354d;
+}
+
+html.light {
+  --bg-primary:   #f5f4f0;
+  --bg-secondary: #eceae5;
+  --bg-card:      #ffffff;
+}
+
+/* Light mode: text overrides */
+html.light .text-slate-100 { color: #0f172a !important; }
+html.light .text-slate-400 { color: #475569 !important; }
+html.light .text-slate-600 { color: #64748b !important; }
+html.light .text-slate-700 { color: #334155 !important; }
+
+/* Light mode: card / gradient-card backgrounds */
+html.light .bg-gradient-card {
+  background-image: linear-gradient(145deg, rgba(255,255,255,0.9), rgba(236,234,229,0.5)) !important;
+}
+html.light .glass-card {
+  background-image: linear-gradient(145deg, rgba(255,255,255,0.95), rgba(240,239,235,0.6)) !important;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+html.light .glass-card:hover {
+  box-shadow: 0 20px 40px rgba(99,102,241,0.10);
+}
+
+/* Light mode: white-opacity borders/backgrounds */
+html.light .border-white\/15 { border-color: rgba(0,0,0,0.12) !important; }
+html.light .border-white\/8  { border-color: rgba(0,0,0,0.08) !important; }
+html.light .bg-white\/5      { background-color: rgba(0,0,0,0.03) !important; }
+
+/* Light mode: form inputs */
+html.light .form-input {
+  background-color: rgba(0,0,0,0.03);
+  border-color: rgba(0,0,0,0.12);
+  color: #0f172a;
+}
+html.light .form-input::placeholder { color: #94a3b8; }
+
 /* ── Base resets ── */
 @layer base {
   *, *::before, *::after { box-sizing: border-box; }

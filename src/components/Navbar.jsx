@@ -36,15 +36,25 @@ const Logo = () => (
 )
 
 export default function Navbar() {
-  const [scrolled, setScrolled]         = useState(false)
-  const [mobileOpen, setMobileOpen]     = useState(false)
+  const [scrolled, setScrolled]             = useState(false)
+  const [mobileOpen, setMobileOpen]         = useState(false)
   const [activeDropdown, setActiveDropdown] = useState(null)
+  const [theme, setTheme]                   = useState(() => localStorage.getItem('theme') || 'dark')
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
     window.addEventListener('scroll', onScroll)
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
+
+  useEffect(() => {
+    const html = document.documentElement
+    if (theme === 'light') html.classList.add('light')
+    else html.classList.remove('light')
+    localStorage.setItem('theme', theme)
+  }, [theme])
+
+  const toggleTheme = () => setTheme(t => t === 'dark' ? 'light' : 'dark')
 
   return (
     <nav className={`fixed top-0 inset-x-0 z-50 h-[72px] transition-all duration-250
@@ -93,8 +103,29 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* CTA */}
-        <div className="hidden lg:block ml-auto flex-shrink-0">
+        {/* Theme toggle + CTA */}
+        <div className="hidden lg:flex items-center gap-2 ml-auto flex-shrink-0">
+          <button
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+            className="w-9 h-9 flex items-center justify-center rounded-lg
+                       bg-white/5 border border-white/8 text-slate-400
+                       transition-all duration-150 hover:bg-accent-primary/10
+                       hover:border-accent-primary/30 hover:text-accent-primary"
+          >
+            {theme === 'dark' ? (
+              /* Sun */
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+                <circle cx="12" cy="12" r="4"/>
+                <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+              </svg>
+            ) : (
+              /* Moon */
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+                <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+              </svg>
+            )}
+          </button>
           <a href="#contact" className="btn-primary">
             <span>Get Started</span>
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -130,7 +161,20 @@ export default function Navbar() {
               {link.label}
             </a>
           ))}
-          <a href="#contact" className="btn-primary mt-3 justify-center">Get Started</a>
+          <div className="flex items-center justify-between mt-2">
+            <button
+              onClick={toggleTheme}
+              className="flex items-center gap-2 px-3.5 py-3 text-sm font-medium text-slate-400
+                         rounded-lg transition-all duration-150 hover:text-slate-100 hover:bg-accent-primary/8"
+            >
+              {theme === 'dark' ? (
+                <><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>Light Mode</>
+              ) : (
+                <><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>Dark Mode</>
+              )}
+            </button>
+            <a href="#contact" className="btn-primary justify-center" onClick={() => setMobileOpen(false)}>Get Started</a>
+          </div>
         </div>
       )}
     </nav>

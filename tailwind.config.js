@@ -16,9 +16,9 @@ export default {
     extend: {
       colors: {
         bg: {
-          primary:   '#0f172a',
-          secondary: '#1e293b',
-          card:      '#27354d',
+          primary:   'var(--bg-primary)',
+          secondary: 'var(--bg-secondary)',
+          card:      'var(--bg-card)',
         },
         accent: {
           primary:   '#6366f1',
