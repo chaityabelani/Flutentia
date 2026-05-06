@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react'
 
 /**
- * Full-page fixed canvas with animated AI neural-network particles.
- * Very transparent — decorative only, never distracts from content.
+ * Full-viewport fixed canvas with animated AI neural-network particles.
+ * z-index: 1 → above section backgrounds (z:auto), below content wrappers (z-10).
  */
 export default function AIBackground() {
   const canvasRef = useRef(null)
@@ -19,47 +19,49 @@ export default function AIBackground() {
     resize()
     window.addEventListener('resize', resize)
 
-    /* ── Node setup ── */
-    const COUNT = 55
-    const MAX_DIST = 170
+    /* ── Nodes ── */
+    const COUNT    = 60
+    const MAX_DIST = 180
 
     const nodes = Array.from({ length: COUNT }, () => ({
       x:     Math.random() * window.innerWidth,
       y:     Math.random() * window.innerHeight,
-      vx:    (Math.random() - 0.5) * 0.35,
-      vy:    (Math.random() - 0.5) * 0.35,
-      r:     Math.random() * 1.6 + 0.8,
+      vx:    (Math.random() - 0.5) * 0.4,
+      vy:    (Math.random() - 0.5) * 0.4,
+      r:     Math.random() * 2 + 1,
       phase: Math.random() * Math.PI * 2,
     }))
 
-    /* ── Render loop ── */
+    /* ── Render ── */
     const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-      const isLight  = document.documentElement.classList.contains('light')
-      const rgb      = isLight ? '80,70,200' : '139,92,246'
-      const lineRGB  = isLight ? '99,102,241' : '99,102,241'
+      const isLight = document.documentElement.classList.contains('light')
 
-      /* update positions */
+      /* colours */
+      const nodeRGB = isLight ? '80,60,220'   : '139,92,246'
+      const lineRGB = isLight ? '99,102,241'  : '99,102,241'
+
+      /* move */
       nodes.forEach(n => {
         n.x     += n.vx
         n.y     += n.vy
-        n.phase += 0.018
+        n.phase += 0.016
         if (n.x < 0 || n.x > canvas.width)  n.vx *= -1
         if (n.y < 0 || n.y > canvas.height) n.vy *= -1
       })
 
-      /* connections */
+      /* lines */
       for (let i = 0; i < nodes.length; i++) {
         for (let j = i + 1; j < nodes.length; j++) {
           const dx   = nodes[i].x - nodes[j].x
           const dy   = nodes[i].y - nodes[j].y
           const dist = Math.sqrt(dx * dx + dy * dy)
           if (dist < MAX_DIST) {
-            const alpha = (1 - dist / MAX_DIST) * (isLight ? 0.07 : 0.09)
+            const a = (1 - dist / MAX_DIST) * (isLight ? 0.18 : 0.22)
             ctx.beginPath()
-            ctx.strokeStyle = `rgba(${lineRGB},${alpha})`
-            ctx.lineWidth   = 0.5
+            ctx.strokeStyle = `rgba(${lineRGB},${a})`
+            ctx.lineWidth   = 0.7
             ctx.moveTo(nodes[i].x, nodes[i].y)
             ctx.lineTo(nodes[j].x, nodes[j].y)
             ctx.stroke()
@@ -70,12 +72,12 @@ export default function AIBackground() {
       /* nodes */
       nodes.forEach(n => {
         const pulse = Math.sin(n.phase) * 0.5 + 0.5
-        const alpha = isLight
-          ? 0.10 + pulse * 0.06
-          : 0.14 + pulse * 0.08
+        const a     = isLight
+          ? 0.20 + pulse * 0.12
+          : 0.28 + pulse * 0.14
         ctx.beginPath()
-        ctx.arc(n.x, n.y, n.r * (1 + pulse * 0.25), 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(${rgb},${alpha})`
+        ctx.arc(n.x, n.y, n.r * (1 + pulse * 0.3), 0, Math.PI * 2)
+        ctx.fillStyle = `rgba(${nodeRGB},${a})`
         ctx.fill()
       })
 
@@ -95,12 +97,12 @@ export default function AIBackground() {
       ref={canvasRef}
       aria-hidden="true"
       style={{
-        position: 'fixed',
-        inset: 0,
-        width: '100%',
-        height: '100%',
+        position:      'fixed',
+        inset:         0,
+        width:         '100%',
+        height:        '100%',
         pointerEvents: 'none',
-        zIndex: 0,
+        zIndex:        1,       /* above section bg (z:auto), below content (z-10) */
       }}
     />
   )

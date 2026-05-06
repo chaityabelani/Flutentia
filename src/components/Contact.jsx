@@ -52,7 +52,7 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="relative py-24 bg-bg-secondary overflow-hidden" ref={sectionRef}>
+    <section id="contact" className="relative py-24 bg-bg-secondary/90 overflow-hidden" ref={sectionRef}>
       {/* Orbs */}
       <div className="orb w-[500px] h-[500px] -top-24 -left-24 animate-orb-float opacity-40"
            style={{ background: 'radial-gradient(circle,rgba(99,102,241,.25),transparent 70%)' }}/>

@@ -18,7 +18,7 @@ export default function Testimonials() {
   const t = testimonials[active]
 
   return (
-    <section id="testimonials" className="relative py-24 bg-bg-secondary overflow-hidden" ref={sectionRef}>
+    <section id="testimonials" className="relative py-24 bg-bg-secondary/90 overflow-hidden" ref={sectionRef}>
       {/* Soft radial glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] pointer-events-none"
            style={{ background: 'radial-gradient(circle,rgba(99,102,241,.06),transparent 70%)' }}/>
