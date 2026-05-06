@@ -134,18 +134,21 @@ export default function Navbar() {
           </a>
         </div>
 
-        {/* Mobile toggle */}
         <button
           className="lg:hidden flex flex-col gap-[5px] p-2 ml-auto"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
         >
-          <span className={`block w-[22px] h-[2px] bg-slate-100 rounded transition-all duration-250 origin-center
-                            ${mobileOpen ? 'translate-y-[7px] rotate-45' : ''}`}/>
-          <span className={`block w-[22px] h-[2px] bg-slate-100 rounded transition-all duration-250
-                            ${mobileOpen ? 'opacity-0 scale-x-0' : ''}`}/>
-          <span className={`block w-[22px] h-[2px] bg-slate-100 rounded transition-all duration-250 origin-center
-                            ${mobileOpen ? '-translate-y-[7px] -rotate-45' : ''}`}/>
+          {[0, 1, 2].map((idx) => (
+            <span
+              key={idx}
+              className={`block w-[22px] h-[2px] rounded transition-all duration-250 origin-center
+                          ${theme === 'light' ? 'bg-slate-800' : 'bg-slate-100'}
+                          ${idx === 0 && mobileOpen ? 'translate-y-[7px] rotate-45' : ''}
+                          ${idx === 1 && mobileOpen ? 'opacity-0 scale-x-0' : ''}
+                          ${idx === 2 && mobileOpen ? '-translate-y-[7px] -rotate-45' : ''}`}
+            />
+          ))}
         </button>
       </div>
 
