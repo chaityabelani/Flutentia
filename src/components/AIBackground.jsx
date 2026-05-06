@@ -1,9 +1,5 @@
 import { useEffect, useRef } from 'react'
 
-/**
- * Full-viewport fixed canvas with animated AI neural-network particles.
- * z-index: 1 → above section backgrounds (z:auto), below content wrappers (z-10).
- */
 export default function AIBackground() {
   const canvasRef = useRef(null)
 
@@ -12,22 +8,10 @@ export default function AIBackground() {
     const ctx    = canvas.getContext('2d')
     let animId
 
-    const resize = () => {
-      canvas.width  = window.innerWidth
-      canvas.height = window.innerHeight
-      /* clamp nodes to new bounds */
-      nodes?.forEach(n => {
-        n.x = Math.min(n.x, canvas.width)
-        n.y = Math.min(n.y, canvas.height)
-      })
-    }
-    resize()
-    window.addEventListener('resize', resize)
-
-    /* ── Nodes ── */
     const COUNT    = 60
     const MAX_DIST = 180
 
+    /* ── Declare nodes FIRST, before resize is called ── */
     const nodes = Array.from({ length: COUNT }, () => ({
       x:     Math.random() * window.innerWidth,
       y:     Math.random() * window.innerHeight,
@@ -37,15 +21,25 @@ export default function AIBackground() {
       phase: Math.random() * Math.PI * 2,
     }))
 
-    /* ── Render ── */
+    const resize = () => {
+      canvas.width  = window.innerWidth
+      canvas.height = window.innerHeight
+      /* safe to clamp now that nodes is defined above */
+      nodes.forEach(n => {
+        n.x = Math.min(n.x, canvas.width)
+        n.y = Math.min(n.y, canvas.height)
+      })
+    }
+    resize()
+    window.addEventListener('resize', resize)
+
+    /* ── Render loop ── */
     const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
 
       const isLight = document.documentElement.classList.contains('light')
-
-      /* colours */
-      const nodeRGB = isLight ? '80,60,220'   : '139,92,246'
-      const lineRGB = isLight ? '99,102,241'  : '99,102,241'
+      const nodeRGB = isLight ? '80,60,220'  : '139,92,246'
+      const lineRGB = '99,102,241'
 
       /* move */
       nodes.forEach(n => {
@@ -107,7 +101,7 @@ export default function AIBackground() {
         width:         '100%',
         height:        '100%',
         pointerEvents: 'none',
-        zIndex:        1,       /* above section bg (z:auto), below content (z-10) */
+        zIndex:        1,
       }}
     />
   )
