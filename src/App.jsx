@@ -1,4 +1,5 @@
 import Navbar from './components/Navbar'
+import AIBackground from './components/AIBackground'
 import Hero from './components/Hero'
 import TechMarquee from './components/TechMarquee'
 import About from './components/About'
@@ -14,6 +15,7 @@ import Footer from './components/Footer'
 export default function App() {
   return (
     <>
+      <AIBackground />
       <Navbar />
       <main>
         <Hero />

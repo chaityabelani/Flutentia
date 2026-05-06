@@ -43,7 +43,7 @@ export default function Hero() {
         <div className="flex items-center justify-between gap-16">
 
           {/* ── Left: text ── */}
-          <div className="flex flex-col items-start flex-1 min-w-0">
+          <div className="flex flex-col items-center xl:items-start flex-1 min-w-0 text-center xl:text-left">
 
             {/* Badge */}
             <div className="animate-fade-up-d1 inline-flex items-center gap-2 text-2xs font-semibold
@@ -85,7 +85,7 @@ export default function Hero() {
 
             {/* Stats */}
             <div className="animate-fade-up-d5 grid grid-cols-2 sm:grid-cols-4 items-start gap-6 sm:gap-10 pt-8 sm:pt-10
-                            border-t border-accent-primary/15 w-full max-w-[520px]">
+                            border-t border-accent-primary/15 w-full max-w-[520px] mx-auto xl:mx-0">
               {stats.map((s) => (
                 <div key={s.label} className="flex flex-col gap-1">
                   <span className="gradient-text font-display text-2xl sm:text-3xl font-extrabold tracking-tight leading-none">
