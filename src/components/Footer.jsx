@@ -22,7 +22,7 @@ const socials = [
 
 export default function Footer() {
   return (
-    <footer className="bg-bg-secondary border-t border-accent-primary/15">
+    <footer className="bg-bg-secondary/90 border-t border-accent-primary/15">
 
       {/* Top */}
       <div className="max-w-[1200px] mx-auto px-6 py-16">
