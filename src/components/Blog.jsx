@@ -47,8 +47,7 @@ export default function Blog() {
           {posts.map((post, i) => (
             <article
               key={post.title}
-              className="glass-card p-7 flex flex-col cursor-pointer group reveal"
-              style={{ transitionDelay: `${i * 0.08}s` }}
+              className={`glass-card p-7 flex flex-col cursor-pointer group reveal reveal-d${i + 1}`}
             >
               {/* Meta */}
               <div className="flex items-center gap-2.5 flex-wrap mb-4">

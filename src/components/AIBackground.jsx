@@ -15,6 +15,11 @@ export default function AIBackground() {
     const resize = () => {
       canvas.width  = window.innerWidth
       canvas.height = window.innerHeight
+      /* clamp nodes to new bounds */
+      nodes?.forEach(n => {
+        n.x = Math.min(n.x, canvas.width)
+        n.y = Math.min(n.y, canvas.height)
+      })
     }
     resize()
     window.addEventListener('resize', resize)

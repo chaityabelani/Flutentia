@@ -61,7 +61,7 @@ export default function Hero() {
             </h1>
 
             {/* Subtext */}
-            <p className="animate-fade-up-d3 text-sm sm:text-base lg:text-lg text-slate-400 leading-[1.8] mb-8 sm:mb-10 max-w-[520px]">
+            <p className="animate-fade-up-d3 text-sm sm:text-base lg:text-lg text-slate-400 leading-[1.8] mb-8 sm:mb-10 max-w-[520px] mx-auto xl:mx-0">
               We transform businesses through cutting-edge AI, cloud architecture, and intelligent
               automation — building systems that scale and solutions that last.
             </p>

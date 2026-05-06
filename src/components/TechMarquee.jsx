@@ -8,7 +8,7 @@ export default function TechMarquee() {
   const doubled = [...techStack, ...techStack]
 
   return (
-    <div className="py-8 border-t border-b border-accent-primary/15 bg-bg-secondary overflow-hidden">
+    <div className="py-8 border-t border-b border-accent-primary/15 bg-bg-secondary/90 overflow-hidden">
       <p className="text-center text-2xs font-semibold uppercase tracking-[0.12em] text-slate-600 mb-4">
         Powering solutions with
       </p>
