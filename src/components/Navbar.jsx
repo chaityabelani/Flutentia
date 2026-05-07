@@ -16,6 +16,15 @@ const navLinks = [
   { label: 'Contact', href: '#contact' },
 ]
 
+const ChevronIcon = ({ open }) => (
+  <svg
+    width="11" height="11" viewBox="0 0 12 12" fill="none"
+    style={{ transition: 'transform 0.2s', transform: open ? 'rotate(180deg)' : 'rotate(0deg)' }}
+  >
+    <path d="M2 4l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+)
+
 const Logo = () => (
   <a href="#home" className="flex items-center gap-2.5 flex-shrink-0">
     <div className="w-9 h-9">
@@ -39,6 +48,7 @@ export default function Navbar() {
   const [scrolled, setScrolled]             = useState(false)
   const [mobileOpen, setMobileOpen]         = useState(false)
   const [activeDropdown, setActiveDropdown] = useState(null)
+  const [mobileExpanded, setMobileExpanded] = useState(null)
   const [theme, setTheme]                   = useState(() => localStorage.getItem('theme') || 'dark')
 
   useEffect(() => {
@@ -79,24 +89,30 @@ export default function Navbar() {
                            whitespace-nowrap"
               >
                 {link.label}
-                {link.dropdown && (
-                  <svg width="11" height="11" viewBox="0 0 12 12" fill="none">
-                    <path d="M2 4l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                )}
+                {link.dropdown && <ChevronIcon open={activeDropdown === link.label} />}
               </a>
 
-              {link.dropdown && activeDropdown === link.label && (
-                <div className="absolute top-[calc(100%+8px)] left-1/2 -translate-x-1/2 min-w-[190px]
-                                bg-bg-card border border-accent-primary/20 rounded-xl p-2
-                                shadow-xl-dark backdrop-blur-xl animate-fade-in z-50">
-                  {link.dropdown.map((item) => (
-                    <a key={item} href={link.href}
-                       className="block px-3.5 py-2 text-sm text-slate-400 rounded-lg
-                                  transition-all duration-150 hover:text-slate-100 hover:bg-accent-primary/10">
-                      {item}
-                    </a>
-                  ))}
+              {link.dropdown && (
+                <div
+                  className="absolute left-1/2 -translate-x-1/2 min-w-[190px] z-50"
+                  style={{
+                    top: '100%',
+                    paddingTop: '6px',          /* bridge gap so mouse doesn't leave hover zone */
+                    pointerEvents: activeDropdown === link.label ? 'auto' : 'none',
+                    opacity: activeDropdown === link.label ? 1 : 0,
+                    transform: `translateX(-50%) translateY(${activeDropdown === link.label ? '0' : '-4px'})`,
+                    transition: 'opacity 0.15s, transform 0.15s',
+                  }}
+                >
+                  <div className="bg-bg-card border border-accent-primary/20 rounded-xl p-2 shadow-xl-dark backdrop-blur-xl">
+                    {link.dropdown.map((item) => (
+                      <a key={item} href={link.href}
+                         className="block px-3.5 py-2 text-sm text-slate-400 rounded-lg
+                                    transition-all duration-150 hover:text-slate-100 hover:bg-accent-primary/10">
+                        {item}
+                      </a>
+                    ))}
+                  </div>
                 </div>
               )}
             </li>
@@ -157,12 +173,47 @@ export default function Navbar() {
         <div className="lg:hidden fixed top-[72px] inset-x-0 bg-bg-primary
                         border-b border-accent-primary/15 px-6 py-5 flex flex-col gap-1 animate-fade-in">
           {navLinks.map((link) => (
-            <a key={link.label} href={link.href}
-               className="px-3.5 py-3 text-base font-medium text-slate-400 rounded-lg
-                          transition-all duration-150 hover:text-slate-100 hover:bg-accent-primary/8"
-               onClick={() => setMobileOpen(false)}>
-              {link.label}
-            </a>
+            link.dropdown ? (
+              <div key={link.label}>
+                {/* Accordion header */}
+                <button
+                  className="w-full flex items-center justify-between px-3.5 py-3 text-base font-medium text-slate-400
+                             rounded-lg transition-all duration-150 hover:text-slate-100 hover:bg-accent-primary/8"
+                  onClick={() => setMobileExpanded(mobileExpanded === link.label ? null : link.label)}
+                >
+                  {link.label}
+                  <ChevronIcon open={mobileExpanded === link.label} />
+                </button>
+                {/* Accordion body */}
+                {mobileExpanded === link.label && (
+                  <div className="pl-4 flex flex-col gap-0.5 pb-1">
+                    <a
+                      href={link.href}
+                      className="px-3.5 py-2 text-sm font-medium text-slate-500 rounded-lg
+                                 transition-all duration-150 hover:text-slate-100 hover:bg-accent-primary/8"
+                      onClick={() => { setMobileOpen(false); setMobileExpanded(null) }}
+                    >
+                      View all {link.label}
+                    </a>
+                    {link.dropdown.map((item) => (
+                      <a key={item} href={link.href}
+                         className="px-3.5 py-2 text-sm text-slate-400 rounded-lg
+                                    transition-all duration-150 hover:text-slate-100 hover:bg-accent-primary/10"
+                         onClick={() => { setMobileOpen(false); setMobileExpanded(null) }}>
+                        {item}
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ) : (
+              <a key={link.label} href={link.href}
+                 className="px-3.5 py-3 text-base font-medium text-slate-400 rounded-lg
+                            transition-all duration-150 hover:text-slate-100 hover:bg-accent-primary/8"
+                 onClick={() => setMobileOpen(false)}>
+                {link.label}
+              </a>
+            )
           ))}
           <div className="flex items-center justify-between mt-2">
             <button
